@@ -1,0 +1,48 @@
+import { db } from "@/lib/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { NextResponse } from "next/server";
+
+export async function POST(req: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized", status: 401 });
+  }
+
+  try {
+    const { category, billboard, billboardId } = await req.json();
+
+    if (!category || category.length < 2) {
+      return NextResponse.json(
+        { error: "Missing required fields." },
+        { status: 400 }
+      );
+    }
+
+    const categoryCase = category.toLowerCase();
+
+    const categoryProduct = await db?.category.create({
+      data: {
+        category: categoryCase,
+        billboard,
+        billboardId,
+      },
+    });
+    return NextResponse.json({
+      msg: "Successful create category",
+      categoryProduct,
+    });
+  } catch (error) {
+    return NextResponse.json({ error: "Error creating category" });
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const category = await db.category.findMany();
+    return NextResponse.json(category);
+  } catch (error) {
+    return NextResponse.json({ error: "Error getting category.", status: 500 });
+  }
+}
