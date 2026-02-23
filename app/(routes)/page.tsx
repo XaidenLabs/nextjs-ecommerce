@@ -3,11 +3,17 @@ import ProductScrollRow from "@/components/product-scroll-row";
 import SummerCapsuleBanner from "@/components/summer-capsule-banner";
 import NewsletterSection from "@/components/newsletter-section";
 import { getCategoryProducts } from "@/actions/get-products";
+import { Product } from "@/types";
 
 export const dynamic = "force-dynamic";
 
 const HomePage = async () => {
-  let menTShirts = [], womenTops = [], hoodies = [], coords = [], shirts = [], slides = [];
+  let menTShirts: Product[] = [],
+    womenTops: Product[] = [],
+    hoodies: Product[] = [],
+    coords: Product[] = [],
+    shirts: Product[] = [],
+    slides: Product[] = [];
 
   try {
     [menTShirts, womenTops, hoodies, coords, shirts, slides] =

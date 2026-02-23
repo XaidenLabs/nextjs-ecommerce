@@ -9,8 +9,13 @@ import MobileNav from "@/components/mobile-nav";
 import UserMenu from "@/components/user-menu";
 
 const NavBar = async () => {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+  let user = null;
+  try {
+    const session = await getServerSession(authOptions);
+    user = session?.user ?? null;
+  } catch (error) {
+    console.error("[NAVBAR] Failed to get session:", error);
+  }
 
   return (
     <header className="bg-black text-white w-full">
