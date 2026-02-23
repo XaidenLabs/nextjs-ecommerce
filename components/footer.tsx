@@ -99,7 +99,7 @@ const Footer = () => {
 
           <div className="mt-20 pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6 px-6">
             <p className="text-[11px] text-gray-400 uppercase tracking-widest">
-              © 2025 bluepetals. All rights reserved.
+              © 2026 bluepetals. All rights reserved.
             </p>
             <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
               <Image src="/assets/visa.png" alt="Visa" width={30} height={20} className="w-8" />

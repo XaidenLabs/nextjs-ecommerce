@@ -24,7 +24,7 @@ const LandingHero = () => {
                         Bluepetals
                     </h1>
                     <p className="mt-4 text-[10px] md:text-xs uppercase tracking-[0.4em] font-medium drop-shadow-lg">
-                        Est. 2025 • Modern Luxury Essentials
+                        Est. 2026 • Modern Luxury Essentials
                     </p>
                 </div>
             </div>
@@ -61,7 +61,7 @@ const LandingHero = () => {
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500" />
                     <div className="absolute bottom-12 left-12 text-white">
                         <h2 className="font-serif text-3xl italic tracking-tight">The Modernist</h2>
-                        <p className="mt-2 text-[10px] uppercase tracking-widest opacity-80">Explore Men's</p>
+                        <p className="mt-2 text-[10px] uppercase tracking-widest opacity-80">Explore Men&apos;s</p>
                     </div>
                 </div>
                 <div className="relative h-[60vh] md:h-screen group overflow-hidden cursor-pointer border-t md:border-t-0 md:border-l border-white/10">
@@ -75,7 +75,7 @@ const LandingHero = () => {
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500" />
                     <div className="absolute bottom-12 left-12 text-white">
                         <h2 className="font-serif text-3xl italic tracking-tight">Ethereal Lines</h2>
-                        <p className="mt-2 text-[10px] uppercase tracking-widest opacity-80">Explore Women's</p>
+                        <p className="mt-2 text-[10px] uppercase tracking-widest opacity-80">Explore Women&apos;s</p>
                     </div>
                 </div>
             </div>

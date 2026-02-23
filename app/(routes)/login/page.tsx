@@ -104,7 +104,7 @@ const LoginPage = () => {
                         </Button>
 
                         <div className="flex flex-col items-center gap-4 text-[11px] uppercase tracking-[0.1em]">
-                            <span className="text-gray-400">Don't have an account?</span>
+                            <span className="text-gray-400">Don&apos;t have an account?</span>
                             <Link
                                 href="/register"
                                 className="font-bold border-b border-black pb-0.5 hover:opacity-50 transition-opacity"
