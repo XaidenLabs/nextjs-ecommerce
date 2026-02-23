@@ -7,15 +7,21 @@ import { getCategoryProducts } from "@/actions/get-products";
 export const dynamic = "force-dynamic";
 
 const HomePage = async () => {
-  const [menTShirts, womenTops, hoodies, coords, shirts, slides] =
-    await Promise.all([
-      getCategoryProducts("Men T-Shirts"),
-      getCategoryProducts("Women Tops"),
-      getCategoryProducts("Sweats & Hoodies"),
-      getCategoryProducts("Co-ords"),
-      getCategoryProducts("Shirts & Jerseys"),
-      getCategoryProducts("Slides"),
-    ]);
+  let menTShirts = [], womenTops = [], hoodies = [], coords = [], shirts = [], slides = [];
+
+  try {
+    [menTShirts, womenTops, hoodies, coords, shirts, slides] =
+      await Promise.all([
+        getCategoryProducts("Men T-Shirts"),
+        getCategoryProducts("Women Tops"),
+        getCategoryProducts("Sweats & Hoodies"),
+        getCategoryProducts("Co-ords"),
+        getCategoryProducts("Shirts & Jerseys"),
+        getCategoryProducts("Slides"),
+      ]);
+  } catch (error) {
+    console.error("[HOME_PAGE] Failed to fetch products:", error);
+  }
 
   return (
     <>
