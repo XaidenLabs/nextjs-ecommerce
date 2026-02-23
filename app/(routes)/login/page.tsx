@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
@@ -25,7 +26,7 @@ const LoginPage = () => {
                 }
 
                 if (callback?.ok && !callback?.error) {
-                    toast.success("Logged in successfully!");
+                    toast.success("Welcome back.");
                     router.push("/");
                     router.refresh();
                 }
@@ -33,23 +34,28 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Sign in to your account
-                </h2>
-            </div>
+        <div className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-white px-6 py-20 lg:px-8">
+            <div className="w-full max-w-[400px]">
+                {/* Header */}
+                <div className="text-center mb-12">
+                    <h2 className="font-serif text-4xl italic tracking-tight lowercase">
+                        Login
+                    </h2>
+                    <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-gray-400">
+                        Access your bluepetals account
+                    </p>
+                </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" onSubmit={loginUser}>
-                    <div>
-                        <label
-                            htmlFor="email"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                        >
-                            Email address
-                        </label>
-                        <div className="mt-2">
+                {/* Form */}
+                <form className="space-y-8" onSubmit={loginUser}>
+                    <div className="space-y-6">
+                        <div className="group relative border-b border-gray-200 focus-within:border-black transition-colors">
+                            <label
+                                htmlFor="email"
+                                className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 mb-2"
+                            >
+                                Email Address
+                            </label>
                             <input
                                 id="email"
                                 name="email"
@@ -58,21 +64,23 @@ const LoginPage = () => {
                                 required
                                 value={data.email}
                                 onChange={(e) => setData({ ...data, email: e.target.value })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-2"
+                                className="block w-full bg-transparent py-4 text-sm focus:outline-none placeholder:text-gray-200"
+                                placeholder="Enter your email"
                             />
                         </div>
-                    </div>
 
-                    <div>
-                        <div className="flex items-center justify-between">
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                                Password
-                            </label>
-                        </div>
-                        <div className="mt-2">
+                        <div className="group relative border-b border-gray-200 focus-within:border-black transition-colors">
+                            <div className="flex items-center justify-between mb-2">
+                                <label
+                                    htmlFor="password"
+                                    className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500"
+                                >
+                                    Password
+                                </label>
+                                <button type="button" className="text-[10px] uppercase tracking-[0.1em] text-gray-400 hover:text-black transition-colors">
+                                    Forgot?
+                                </button>
+                            </div>
                             <input
                                 id="password"
                                 name="password"
@@ -81,19 +89,29 @@ const LoginPage = () => {
                                 required
                                 value={data.password}
                                 onChange={(e) => setData({ ...data, password: e.target.value })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-2"
+                                className="block w-full bg-transparent py-4 text-sm focus:outline-none placeholder:text-gray-200"
+                                placeholder="Enter your password"
                             />
                         </div>
                     </div>
 
-                    <div>
+                    <div className="pt-4 space-y-6">
                         <Button
-                            disabled={false}
                             type="submit"
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="w-full bg-black text-white hover:bg-zinc-800 rounded-none h-14 text-[11px] uppercase tracking-[0.3em] font-bold transition-all"
                         >
-                            Sign in
+                            Sign In
                         </Button>
+
+                        <div className="flex flex-col items-center gap-4 text-[11px] uppercase tracking-[0.1em]">
+                            <span className="text-gray-400">Don't have an account?</span>
+                            <Link
+                                href="/register"
+                                className="font-bold border-b border-black pb-0.5 hover:opacity-50 transition-opacity"
+                            >
+                                Join us
+                            </Link>
+                        </div>
                     </div>
                 </form>
             </div>

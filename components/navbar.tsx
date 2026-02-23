@@ -18,38 +18,38 @@ const NavBar = async () => {
   }
 
   return (
-    <header className="bg-black text-white w-full">
+    <header className="bg-white text-black w-full border-b border-gray-100 sticky top-0 z-50">
       <Container>
-        <div className="flex items-center justify-between h-16 lg:h-[12vh] px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
           {/* LEFT SIDE - LOGO + NAV */}
-          <div className="flex items-center gap-6 lg:gap-10">
+          <div className="flex items-center gap-12">
             {/* Logo */}
-            <Link href="/">
-              <span className="text-white font-bold text-xl lg:text-2xl tracking-tight">
-                blue<span className="italic font-light">petals</span>
+            <Link href="/" className="transition-opacity hover:opacity-80">
+              <span className="text-black font-serif text-2xl lg:text-3xl tracking-tighter uppercase italic">
+                bluepetals
               </span>
             </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:block">
-              <ul className="flex gap-6 text-sm">
+              <ul className="flex gap-8 text-[13px] uppercase tracking-widest font-medium">
                 <li>
-                  <Link href="/" className="hover:text-gray-400 transition-colors">
+                  <Link href="/" className="hover:text-gray-500 transition-colors">
                     New Arrivals
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop/Men T-Shirts" className="hover:text-gray-400 transition-colors">
+                  <Link href="/shop/Men T-Shirts" className="hover:text-gray-500 transition-colors">
                     Men
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop/Women Tops" className="hover:text-gray-400 transition-colors">
+                  <Link href="/shop/Women Tops" className="hover:text-gray-500 transition-colors">
                     Women
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop/Shirts & Jerseys" className="hover:text-gray-400 transition-colors">
+                  <Link href="/shop/Shirts & Jerseys" className="hover:text-gray-500 transition-colors">
                     Collections
                   </Link>
                 </li>
@@ -58,7 +58,7 @@ const NavBar = async () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="flex items-center gap-3 lg:gap-5">
+          <div className="flex items-center gap-6">
             {/* Search */}
             <div className="hidden sm:block">
               <NavbarSearch />
@@ -71,12 +71,18 @@ const NavBar = async () => {
             {user ? (
               <UserMenu name={user.name} email={user.email} />
             ) : (
-              <div className="flex items-center gap-2">
-                <Button size="sm" asChild className="bg-white text-black hover:bg-gray-200 rounded-sm text-xs">
-                  <Link href="/login">Sign In</Link>
-                </Button>
-                <Button size="sm" asChild className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-sm text-xs hidden sm:inline-flex">
-                  <Link href="/register">Sign Up</Link>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/login"
+                  className="text-[13px] uppercase tracking-widest font-medium hover:text-gray-500 transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Button
+                  asChild
+                  className="bg-black text-white hover:bg-zinc-800 rounded-none text-[11px] uppercase tracking-[0.2em] px-6 h-10"
+                >
+                  <Link href="/register">Join Us</Link>
                 </Button>
               </div>
             )}

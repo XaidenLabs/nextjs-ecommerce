@@ -5,11 +5,12 @@ import { siteConfig } from "@/config/site";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { ToastProvider } from "@/providers/toast-provider";
 
-import { Urbanist } from "next/font/google";
+import { Urbanist, Playfair_Display } from "next/font/google";
 import { AuthProvider } from "@/providers/auth-provider";
 import { ModalProvider } from "@/providers/modal-provider";
 
-const font = Urbanist({ subsets: ["latin"] });
+const font = Urbanist({ subsets: ["latin"], variable: "--font-sans" });
+const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
   title: "Bluepetals",
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={`${font.variable} ${serif.variable} font-sans antialiased`}>
         <AuthProvider>
           <ModalProvider />
           <ToastProvider />

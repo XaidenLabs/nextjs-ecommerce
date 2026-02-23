@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import Container from "./ui/container";
 import { Product } from "@/types";
 
 interface ProductScrollRowProps {
@@ -14,41 +17,61 @@ const ProductScrollRow = ({ title, sectionTitle, products }: ProductScrollRowPro
     const router = useRouter();
 
     return (
-        <div className="bg-[#F8F8F8] min-h-max w-full max-w-screen mx-auto border pb-16 lg:pb-0 p-5 lg:p-20">
-            {sectionTitle && (
-                <h1 className="font-semibold text-2xl pt-10">{sectionTitle}</h1>
-            )}
-            <h2 className="underline text-xl pt-5">{title}</h2>
-            <div className="flex overflow-x-auto space-x-4 no-scrollbar pt-5 lg:pt-10 pb-10">
-                {products.map((product) => (
-                    <div
-                        key={product.id}
-                        onClick={() => router.push(`/product/${product.id}`)}
-                        className="lg:min-w-[300px] rounded-lg p-2 cursor-pointer group text-sm lg:text-lg flex-shrink-0"
-                    >
-                        <div className="relative w-36 lg:w-64 h-48 lg:h-80 overflow-hidden rounded-lg bg-[#EFEFF0]">
-                            <Image
-                                src={product.imageURLs[0] || "/placeholder.jpg"}
-                                alt={product.title}
-                                fill
-                                className="object-cover transition-all duration-500 group-hover:scale-110"
-                                sizes="(max-width: 768px) 144px, 256px"
-                            />
-                            {/* Dark overlay on hover */}
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            {/* Shop Now text on hover */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                                <span className="text-white text-lg font-semibold bg-black/60 px-3 py-1 rounded-lg">
-                                    Shop Now
-                                </span>
+        <div className="bg-white border-b border-gray-50 py-24 px-6 md:px-12">
+            <Container>
+                {sectionTitle && (
+                    <h2 className="font-serif text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4">
+                        {sectionTitle}
+                    </h2>
+                )}
+                <div className="flex items-end justify-between border-b border-black pb-4 mb-12">
+                    <h3 className="font-serif text-3xl md:text-4xl italic tracking-tight">{title}</h3>
+                    <Link href="/shop" className="text-[10px] uppercase tracking-[0.2em] font-bold hover:opacity-50 transition-opacity">
+                        View All
+                    </Link>
+                </div>
+
+                <div className="flex overflow-x-auto gap-8 no-scrollbar pb-8">
+                    {products.map((product) => (
+                        <div
+                            key={product.id}
+                            onClick={() => router.push(`/product/${product.id}`)}
+                            className="min-w-[280px] md:min-w-[340px] group cursor-pointer"
+                        >
+                            <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
+                                <Image
+                                    src={product.imageURLs[0] || "/placeholder.jpg"}
+                                    alt={product.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 280px, 340px"
+                                />
+                                {/* Elegant Hover Overlay */}
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                    <span className="text-white text-[11px] uppercase tracking-[0.2em] font-bold bg-black px-6 py-3">
+                                        Quick View
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="mt-6 space-y-1">
+                                <div className="flex justify-between items-start">
+                                    <h4 className="text-[13px] font-bold uppercase tracking-widest truncate max-w-[70%]">
+                                        {product.title}
+                                    </h4>
+                                    <p className="text-[13px] font-medium">
+                                        ₦{Number(product.price).toLocaleString("en-NG")}
+                                    </p>
+                                </div>
+                                <p className="text-[11px] text-gray-400 uppercase tracking-widest">
+                                    {product.category}
+                                </p>
                             </div>
                         </div>
-                        <h1 className="font-semibold pt-5">{product.title}</h1>
-                        <h1 className="text-gray-600">{product.category}</h1>
-                        <b>₦{Number(product.price).toLocaleString("en-NG")}</b>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </Container>
         </div>
     );
 };
