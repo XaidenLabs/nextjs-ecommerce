@@ -4,6 +4,8 @@ import SummerCapsuleBanner from "@/components/summer-capsule-banner";
 import NewsletterSection from "@/components/newsletter-section";
 import { getCategoryProducts } from "@/actions/get-products";
 
+export const dynamic = "force-dynamic";
+
 const HomePage = async () => {
   const [menTShirts, womenTops, hoodies, coords, shirts, slides] =
     await Promise.all([
