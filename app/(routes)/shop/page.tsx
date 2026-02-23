@@ -3,6 +3,8 @@ import { getAllProducts } from "@/actions/get-products";
 import filteredData from "@/app/utils/filteredData";
 import { Product } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Shop | Bluepetals",
   description: `Shop for e-ecommerce, selling products, and new productivity`,
